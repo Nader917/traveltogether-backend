@@ -13,14 +13,15 @@ const hotelBookingsRouter = require('./routes/hotelBookings');
 const flightsRoutes = require('./routes/flights.routes');
 
 const app = express();
-
+const corsOptions = {
+  origin: "https://www.traveltogether-agency.com",
+  credentials: true,
+};
 // Connect to MongoDB
 connectDB();
 
-app.use(cors({
-  origin: true,
-  credentials: true
-}));
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 // Routes
