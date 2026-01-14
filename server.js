@@ -14,7 +14,12 @@ const flightsRoutes = require('./routes/flights.routes');
 
 const app = express();
 const corsOptions = {
-  origin: "https://www.traveltogether-agency.com",
+  origin: [
+    "https://www.traveltogether-agency.com",
+    "https://traveltogether-agency.com"  // add this line
+  ],
+  credentials: true,
+};
   credentials: true,
 };
 // Connect to MongoDB
