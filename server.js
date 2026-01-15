@@ -16,7 +16,7 @@ const app = express();
 const corsOptions = {
   origin: [
     "https://www.traveltogether-agency.com",
-    "http://localhost:4200",
+    //"http://localhost:4200",
     "https://traveltogether-agency.com",
   ],
   credentials: true,
