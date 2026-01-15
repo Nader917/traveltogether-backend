@@ -16,11 +16,9 @@ const app = express();
 const corsOptions = {
   origin: [
     "https://www.traveltogether-agency.com",
-     "http://localhost:4200/",
-    "https://traveltogether-agency.com"  // add this line
+    "http://localhost:4200",
+    "https://traveltogether-agency.com",
   ],
-  credentials: true,
-};
   credentials: true,
 };
 // Connect to MongoDB
