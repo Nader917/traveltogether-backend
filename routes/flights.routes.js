@@ -89,8 +89,20 @@ router.get('/search', async (req, res) => {
         currency_code
       }
     });
-
-    res.json(response.data);
+    
+    // ✅ SORT FLIGHTS BY DEPARTURE TIME (EARLIEST → LATEST)
+    const data = response.data;
+    
+    if (data?.data?.flights && Array.isArray(data.data.flights)) {
+      data.data.flights.sort((a, b) => {
+        const timeA = new Date(a.segments[0].departureDateTime).getTime();
+        const timeB = new Date(b.segments[0].departureDateTime).getTime();
+        return timeA - timeB;
+      });
+    }
+    
+    res.json(data);
+    
 
   } catch (err) {
     console.error(err.response?.data || err.message);
