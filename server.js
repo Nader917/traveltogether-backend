@@ -28,6 +28,14 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, 'dist/bus-traveller'), {
+  maxAge: '1y',
+  setHeaders: (res, filePath) => {
+    if (filePath.match(/\.(mp4|webp|jpg|jpeg|png|css|js)$/)) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+  }
+}));
 // Routes
 app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
@@ -41,6 +49,8 @@ app.use('/api/flights', flightsRoutes);
 app.get("/", (req, res) => {
   res.send("API is running");
 });
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/bus-traveller/index.html'));
+});
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
