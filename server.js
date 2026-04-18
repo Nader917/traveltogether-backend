@@ -54,7 +54,7 @@ app.get("/", (req, res) => {
 });
 
 // Angular fallback
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/bus-traveller/index.html'));
 });
 
